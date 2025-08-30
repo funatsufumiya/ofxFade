@@ -4,7 +4,7 @@ Fade-in/out helper for openFrameworks
 
 ## [example_simple](./example_simple/src/ofApp.cpp)
 
-![docs/screenshot_simple2.png](docs/screenshot_simple2.png)
+![docs/screenshot_simple.png](docs/screenshot_simple.png)
 
 ```cpp
 #include "ofxFadeHelper.h"
