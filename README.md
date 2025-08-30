@@ -106,3 +106,7 @@ ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper
 - `fadeout_sec` can be `-1.0f` (minus value), means no fadeout.
 - You can also get `rateEasing` using `[](float alpha, float rateEasing){}` for `alpha()`, or `[](float delta, float alpha, float rateEasing)` for `delta()`.
 - You can also get `rateTime` using `[](float alpha, float rateEasing, float rateTime){}` for `alpha()`, or `[](float delta, float alpha, float rateEasing, float rateTime)` for `delta()`.
+
+## TODOs
+
+- add advanced example
