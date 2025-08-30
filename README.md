@@ -2,6 +2,8 @@
 
 Fade-in/out helper for openFrameworks
 
+"Bring Your Own Engine/Framework" style. You can create more compilcated engine or framework using this helper.
+
 ## [example_simple](./example_simple/src/ofApp.cpp)
 
 ![docs/screenshot_simple.png](docs/screenshot_simple.png)
