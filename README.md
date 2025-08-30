@@ -256,6 +256,10 @@ Just set `0` to `fadein_sec`
     - `[](float alpha, float rateEasing, float rateTime, Phase phase){}` for `alpha()`
     - `[](float delta, float alpha, float rateEasing, float rateTime, Phase phase)` for `delta()`
 
+### Custom `delta` class
+
+You can pass any custom class `T` for `delta<T>()`, if it can be multiplied (`*`) by `rate` (please implement `operator *(float)`.)
+
 ## TODOs
 
 - add advanced example
