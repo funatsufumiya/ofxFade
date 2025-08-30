@@ -14,7 +14,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    float t = std::fmodf(ofGetElapsedTimef(), 2.0f);
+    // loop time: 2.5 (sec)
+    float t = std::fmodf(ofGetElapsedTimef(), 2.5f);
 
     // fadein: 0.5, static: 1.0, fadeout: 0.5
     ofxFadeHelper::alpha(t, 0.5f, 1.0f, 0.5f, [](float a){

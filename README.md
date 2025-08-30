@@ -9,7 +9,8 @@ Fade-in/out helper for openFrameworks
 ```cpp
 #include "ofxFadeHelper.h"
 
-float t = std::fmodf(ofGetElapsedTimef(), 2.0f);
+// loop time: 2.5 (sec)
+float t = std::fmodf(ofGetElapsedTimef(), 2.5f);
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5
 ofxFadeHelper::alpha(t, 0.5f, 1.0f, 0.5f, [](float a){
@@ -37,7 +38,8 @@ ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float rateEasing, float rateTime
 ```cpp
 #include "ofxFadeHelper.h"
 
-float t = std::fmodf(ofGetElapsedTimef(), 2.0f);
+// loop time: 2.5 (sec)
+float t = std::fmodf(ofGetElapsedTimef(), 2.5f);
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100
 ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta){
@@ -65,7 +67,8 @@ ofxFadeHelper::delta<ofVec2f>(t, 0.5f, 1.0f, 0.5f, ofVec2f(30, 100), [](ofVec2f 
 ```cpp
 #include "ofxFadeHelper.h"
 
-float t = std::fmodf(ofGetElapsedTimef(), 2.0f);
+// loop time: 2.5 (sec)
+float t = std::fmodf(ofGetElapsedTimef(), 2.5f);
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100, cubic (out)
 ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta){
@@ -110,3 +113,4 @@ ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper
 ## TODOs
 
 - add advanced example
+- separate easing (in/out)
