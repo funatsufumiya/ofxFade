@@ -6,11 +6,16 @@ Fade-in/out helper for openFrameworks
 
 "Bring Your Own Engine/Framework" style. You can create more compilcated engine or framework using this helper.
 
-This addon provides only three functions.
+This addon basically provides three functions:
 
 - `ofxFadeHelper::alpha()`
 - `ofxFadeHelper::delta<T>()`
 - `ofxFadeHelper::advanced()`
+
+And two timer classes (which has the same method):
+
+- `ofxFadeHelper::InteractiveFadeTimer`
+- `ofxFadeHelper::NonInteractiveFadeTimer`
 
 ## Dependencies
 
@@ -118,6 +123,46 @@ ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper
     ofDrawBitmapStringHighlight(s3, x, 150);
 
 }, ofxeasing::Function::Cubic);
+```
+
+# [example_interactive](./example_interactive/src/ofApp.cpp)
+
+![docs/screenshot_interactive.png](docs/screenshot_interactive.png)
+
+```cpp
+#include "ofxFadeHelper.h"
+
+ofxFadeHelper::InteractiveFadeTimer timer;
+
+//--------------------------------------------------------------
+void ofApp::setup(){
+    timer = ofxFadeHelper::InteractiveFadeTimer(1.0f, 1.0f);
+    timer.start();
+}
+
+//--------------------------------------------------------------
+void ofApp::update(){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::draw(){
+    timer.alpha([](float a){
+        ofSetColor(255, 0, 0, a);
+        ofDrawEllipse(100, 100, 100, 100);
+    });
+
+    ofDrawBitmapString("click to toggle fade", 100, 100);
+}
+
+//--------------------------------------------------------------
+void ofApp::mousePressed(int x, int y, int button){
+    if(timer.isStarted() && !timer.isFadeOutStarted()){
+        timer.fadeOut();
+    }else if(timer.isFinished()){
+        timer.start();
+    }
+}
 ```
 
 ## Notes
