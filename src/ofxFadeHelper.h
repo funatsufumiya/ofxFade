@@ -230,6 +230,10 @@ public:
             return started_timef > 0.0f;
         }
 
+        bool isFadeInEnded(){
+            return getElapsedTime() > getFadeInSec();
+        }
+
         bool isFadeOutStarted(){
             return getElapsedTime() > getFadeInSec() + getStaticSec();
         }
@@ -298,6 +302,10 @@ public:
 
         bool isStarted(){
             return started_timef > 0.0f;
+        }
+
+        bool isFadeInEnded(){
+            return getElapsedTime() > getFadeInSec();
         }
 
         bool isFadeOutStarted(){
