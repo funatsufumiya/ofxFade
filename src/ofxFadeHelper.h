@@ -19,50 +19,26 @@ public:
     template<typename T>
     static void delta(float t, float fadein_sec, float static_sec, float fadeout_sec, T delta, std::function<void(T)> draw_fn, ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out){
         advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn, &delta](float r, Phase phase){
-            if(phase == Phase::FADEIN){
-                draw_fn(r * delta);
-            }else if(phase == Phase::STATIC){
-                draw_fn(1.0f * delta);
-            }else if(phase == Phase::FADEOUT){
-                draw_fn(r * delta);
-            }
+            draw_fn(r * delta);
         }, easing_func, easing_type);
     }
     template<typename T>
     static void delta(float t, float fadein_sec, float static_sec, float fadeout_sec, T delta, std::function<void(T, float alpha)> draw_fn, ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out){
         advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn, &delta](float r, Phase phase){
-            if(phase == Phase::FADEIN){
-                draw_fn(r * delta, r * 255.0f);
-            }else if(phase == Phase::STATIC){
-                draw_fn(1.0f * delta, 255.0f);
-            }else if(phase == Phase::FADEOUT){
-                draw_fn(r * delta, r * 255.0f);
-            }
+            draw_fn(r * delta, r * 255.0f);
         }, easing_func, easing_type);
 
     }
     template<typename T>
     static void delta(float t, float fadein_sec, float static_sec, float fadeout_sec, T delta, std::function<void(T, float alpha, float rateEasing)> draw_fn, ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out){
         advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn, &delta](float r, Phase phase){
-            if(phase == Phase::FADEIN){
-                draw_fn(r * delta, r * 255.0f, r);
-            }else if(phase == Phase::STATIC){
-                draw_fn(1.0f * delta, 255.0f, 1.0f);
-            }else if(phase == Phase::FADEOUT){
-                draw_fn(r * delta, r * 255.0f, r);
-            }
+            draw_fn(r * delta, r * 255.0f, r);
         }, easing_func, easing_type);
     }
     template<typename T>
     static void delta(float t, float fadein_sec, float static_sec, float fadeout_sec, T delta, std::function<void(T, float alpha, float rateEasing, float rateTime)> draw_fn, ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out){
         advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn, &delta](float r, float rt, Phase phase){
-            if(phase == Phase::FADEIN){
-                draw_fn(r * delta, r * 255.0f, r, rt);
-            }else if(phase == Phase::STATIC){
-                draw_fn(1.0f * delta, 255.0f, 1.0f, 1.0f);
-            }else if(phase == Phase::FADEOUT){
-                draw_fn(r * delta, r * 255.0f, r, (1.0f - rt));
-            }
+            draw_fn(r * delta, r * 255.0f, r, rt);
         }, easing_func, easing_type);
     }
     static std::string phaseToString(Phase phase);
