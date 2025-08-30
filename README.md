@@ -65,3 +65,7 @@ ofxFadeHelper::delta<ofVec2f>(t, 0.5f, 1.0f, 0.5f, ofVec2f(30, 100), [](ofVec2f 
 
 - `fadeout_sec` can be `-1.0f` (minus value), means no fadeout.
 - You can also get `rate` using `[](float alpha, float rate){}` for `alpha()`, or `[](float delta, float alpha, float rate)` for `delta()`.
+
+## TODOs
+
+- Easing (using ofxEasing)
