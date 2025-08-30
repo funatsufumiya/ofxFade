@@ -58,6 +58,49 @@ ofxFadeHelper::delta<ofVec2f>(t, 0.5f, 1.0f, 0.5f, ofVec2f(30, 100), [](ofVec2f 
 });
 ```
 
+## [example_easing](./example_easing/src/ofApp.cpp)
+
+![docs/screenshot_easing.png](docs/screenshot_easing.png)
+
+```cpp
+#include "ofxFadeHelper.h"
+
+float t = std::fmodf(ofGetElapsedTimef(), 2.0f);
+
+// fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100, cubic (out)
+ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta){
+    ofSetColor(255, 0, 0);
+    ofDrawEllipse(100, 100 + delta, 100, 100);
+}, ofxeasing::Function::Cubic);
+
+// fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100, bounce (in-out)
+ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta, float alpha){
+    ofSetColor(255, 0, 0, alpha);
+    ofDrawEllipse(220, 100 + delta, 100, 100);
+}, ofxeasing::Function::Bounce, ofxeasing::Type::InOut);
+
+// fadein: 0.5, static: 1.0, fadeout: 0.5, cubic (in)
+ofxFadeHelper::alpha(t, 0.5f, 1.0f, 0.5f, [](float alpha){
+    ofSetColor(255, 0, 0, alpha);
+    ofDrawEllipse(340, 100, 100, 100);
+}, ofxeasing::Function::Cubic, ofxeasing::Type::In);
+
+// fadein: 0.5, static: 1.0, fadeout: 0.5, cubic (out)
+ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper::Phase phase){
+    const float x = 460;
+
+    std::string s1 = "rateEasing: " + ofToString(r, 2);
+    ofDrawBitmapString(s1, x, 50);
+
+    std::string s2 = "rateTime: " + ofToString(rt, 2);
+    ofDrawBitmapString(s2, x, 100);
+
+    std::string s3 = ofxFadeHelper::phaseToString(phase);
+    ofDrawBitmapStringHighlight(s3, x, 150);
+
+}, ofxeasing::Function::Cubic);
+```
+
 ## Notes
 
 - `fadeout_sec` can be `-1.0f` (minus value), means no fadeout.
