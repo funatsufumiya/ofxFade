@@ -12,7 +12,7 @@ This addon basically provides three functions:
 - `ofxFadeHelper::delta<T>()`
 - `ofxFadeHelper::advanced()`
 
-And two timer classes (which has the same method):
+And two timer classes (which has the same method above in it):
 
 - `ofxFadeHelper::InteractiveFadeTimer`
 - `ofxFadeHelper::NonInteractiveFadeTimer`
