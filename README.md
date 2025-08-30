@@ -1,5 +1,7 @@
 # ofxFadeHelper
 
+![docs/movie.gif](docs/movie.gif)
+
 Fade-in/out helper for openFrameworks
 
 "Bring Your Own Engine/Framework" style. You can create more compilcated engine or framework using this helper.
