@@ -19,12 +19,30 @@ And two timer classes (which has the same method above in it):
 
 ( You can also create new timer classes by extending `ofxFade::FadeTimer` or two above. )
 
+## Table of Contents
+
+- [Dependencies](#dependencies)
+- [Examples](#examples)
+  - [example\_simple](#example_simple)
+  - [example\_delta](#example_delta)
+  - [example\_easing](#example_easing)
+  - [example\_interactive](#example_interactive)
+  - [example\_non\_interactive](#example_non_interactive)
+- [Notes](#notes)
+  - [No fadeout](#no-fadeout)
+  - [No fadein](#no-fadein)
+  - [How to get `rateEasing`/`rateTime`/`phase` in `alpha()`, `delta()`](#how-to-get-rateeasingratetimephase-in-alpha-delta)
+- [TODOs](#todos)
+- [License](#license)
+
+
 ## Dependencies
 
 - [ofxEasing](https://github.com/funatsufumiya/ofxEasing/)
 
+## Examples
 
-## [example_simple](./example_simple/src/ofApp.cpp)
+### [example_simple](./example_simple/src/ofApp.cpp)
 
 ![docs/screenshot_simple.png](docs/screenshot_simple.png)
 
@@ -53,7 +71,7 @@ ofxFade::advanced(t, 0.5f, 1.0f, 0.5f, [](float rateEasing, float rateTime, ofxF
 });
 ```
 
-## [example_delta](./example_delta/src/ofApp.cpp)
+### [example_delta](./example_delta/src/ofApp.cpp)
 
 ![docs/screenshot_delta.png](docs/screenshot_delta.png)
 
@@ -82,7 +100,7 @@ ofxFade::delta<ofVec2f>(t, 0.5f, 1.0f, 0.5f, ofVec2f(30, 100), [](ofVec2f delta,
 });
 ```
 
-## [example_easing](./example_easing/src/ofApp.cpp)
+### [example_easing](./example_easing/src/ofApp.cpp)
 
 ![docs/screenshot_easing.png](docs/screenshot_easing.png)
 
@@ -127,7 +145,7 @@ ofxFade::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFade::Phase phas
 }, ofxeasing::Function::Cubic);
 ```
 
-## [example_interactive](./example_interactive/src/ofApp.cpp)
+### [example_interactive](./example_interactive/src/ofApp.cpp)
 
 ![docs/screenshot_interactive.png](docs/screenshot_interactive.png)
 
@@ -167,7 +185,7 @@ void ofApp::mousePressed(int x, int y, int button){
 }
 ```
 
-## [example_non_interactive](./example_non_interactive/src/ofApp.cpp)
+### [example_non_interactive](./example_non_interactive/src/ofApp.cpp)
 
 ![docs/screenshot_non_interactive.png](docs/screenshot_non_interactive.png)
 
