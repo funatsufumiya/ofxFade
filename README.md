@@ -262,7 +262,8 @@ You can pass any custom class `T` for `delta<T>()`, if it can be multiplied (`*`
 
 ## TODOs
 
-- add advanced example
+- Add advanced example
+- Support `tuple` as `T` for `delta<T>()`
 
 ## License
 
