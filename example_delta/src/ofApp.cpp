@@ -35,20 +35,29 @@ void ofApp::draw(){
     });
 
     // fadein: 0.5, static: 1.0, fadeout: 0.5
-    ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, ofxFadeHelper::Phase phase){
+    ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper::Phase phase){
         const float x = 460;
 
-        std::string s1 = "r: " + ofToString(r, 2);
+        std::string s1 = "rateEasing: " + ofToString(r, 2);
         ofDrawBitmapString(s1, x, 50);
 
-        std::string s2 = ofxFadeHelper::phaseToString(phase);
-        ofDrawBitmapStringHighlight(s2, x, 150);
+        std::string s2 = "rateTime: " + ofToString(rt, 2);
+        ofDrawBitmapString(s2, x, 100);
+
+        std::string s3 = ofxFadeHelper::phaseToString(phase);
+        ofDrawBitmapStringHighlight(s3, x, 150);
 
         ofSetColor(100);
         ofDrawRectangle(x, 60, 100, 4);
 
         ofSetColor(255);
         ofDrawRectangle(x, 60, 100 * r, 4);
+
+        ofSetColor(100);
+        ofDrawRectangle(x, 110, 100, 4);
+
+        ofSetColor(255);
+        ofDrawRectangle(x, 110, 100 * rt, 4);
     });
 }
 

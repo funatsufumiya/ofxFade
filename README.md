@@ -18,18 +18,15 @@ ofxFadeHelper::alpha(t, 0.5f, 1.0f, 0.5f, [](float a){
 });
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5
-ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, ofxFadeHelper::Phase phase){
-    std::string s1 = "r: " + ofToString(r, 2);
+ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float rateEasing, float rateTime, ofxFadeHelper::Phase phase){
+    std::string s1 = "rateEasing: " + ofToString(rateEasing, 2);
     ofDrawBitmapString(s1, 200, 50);
 
-    std::string s2 = ofxFadeHelper::phaseToString(phase);
-    ofDrawBitmapStringHighlight(s2, 200, 150);
+    std::string s2 = "rateTime: " + ofToString(rateTime, 2);
+    ofDrawBitmapString(s2, 200, 100);
 
-    // ofSetColor(100);
-    // ofDrawRectangle(200, 60, 100, 4);
-
-    // ofSetColor(255);
-    // ofDrawRectangle(200, 60, 100 * r, 4);
+    std::string s3 = ofxFadeHelper::phaseToString(phase);
+    ofDrawBitmapStringHighlight(s3, 200, 150);
 });
 ```
 
@@ -65,4 +62,4 @@ ofxFadeHelper::delta<ofVec2f>(t, 0.5f, 1.0f, 0.5f, ofVec2f(30, 100), [](ofVec2f 
 
 - `fadeout_sec` can be `-1.0f` (minus value), means no fadeout.
 - You can also get `rateEasing` using `[](float alpha, float rateEasing){}` for `alpha()`, or `[](float delta, float alpha, float rateEasing)` for `delta()`.
-- You can also get `rate` using `[](float alpha, float rateEasing, float rate){}` for `alpha()`, or `[](float delta, float alpha, float rateEasing, float rate)` for `delta()`.
+- You can also get `rateTime` using `[](float alpha, float rateEasing, float rate){}` for `alpha()`, or `[](float delta, float alpha, float rateEasing, float rate)` for `delta()`.
