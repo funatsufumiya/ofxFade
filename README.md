@@ -218,7 +218,7 @@ void ofApp::mousePressed(int x, int y, int button){
 
 Just set `0` to `fadein_sec`
 
-### How to get rateEasing/rateTime/phase in `alpha()`, `delta()`
+### How to get `rateEasing`/`rateTime`/`phase` in `alpha()`, `delta()`
 
 - Additional args of function (callback):
   - To get `rateEasing`, use:
