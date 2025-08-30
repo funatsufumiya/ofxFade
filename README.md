@@ -90,7 +90,11 @@ ofxFade::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta){
     ofSetColor(255, 0, 0);
     ofDrawEllipse(100, 100 + delta, 100, 100);
 });
+```
 
+and more:
+
+```
 // fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100
 ofxFade::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta, float alpha){
     ofSetColor(255, 0, 0, alpha);
