@@ -78,7 +78,7 @@ public:
                 easing_func, easing_type
             );
         }
-        void alpha(std::function<void(float alpha, float rateEasing, float rateTime)> draw_fn,
+        void alpha(std::function<void(float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear,ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
             ofxFadeHelper::alpha(
@@ -106,7 +106,7 @@ public:
                 easing_func_out, easing_type_out
             );
         }
-        void alpha(std::function<void(float alpha, float rateEasing, float rateTime)> draw_fn,
+        void alpha(std::function<void(float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
@@ -148,7 +148,7 @@ public:
         }
 
         template<typename T>
-        void delta(T delta, std::function<void(T, float alpha, float rateEasing, float rateTime)> draw_fn,
+        void delta(T delta, std::function<void(T, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
             ofxFadeHelper::delta(
@@ -194,7 +194,7 @@ public:
         }
 
         template<typename T>
-        void delta(T delta, std::function<void(T, float alpha, float rateEasing, float rateTime)> draw_fn,
+        void delta(T delta, std::function<void(T, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
@@ -376,7 +376,7 @@ public:
         ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out);
     static void alpha(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float alpha, float rateEasing)> draw_fn,
         ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out);
-    static void alpha(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float alpha, float rateEasing, float rateTime)> draw_fn,
+    static void alpha(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
         ofxeasing::Function easing_func = ofxeasing::Function::Linear,ofxeasing::Type easing_type = ofxeasing::Type::Out);
     static void alpha(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float alpha)> draw_fn,
         ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
@@ -384,7 +384,7 @@ public:
     static void alpha(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float alpha, float rateEasing)> draw_fn,
         ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
         ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out);
-    static void alpha(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float alpha, float rateEasing, float rateTime)> draw_fn,
+    static void alpha(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
         ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
         ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out);
 
@@ -417,11 +417,11 @@ public:
     }
 
     template<typename T>
-    static void delta(float t, float fadein_sec, float static_sec, float fadeout_sec, T delta, std::function<void(T, float alpha, float rateEasing, float rateTime)> draw_fn,
+    static void delta(float t, float fadein_sec, float static_sec, float fadeout_sec, T delta, std::function<void(T, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
         ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
     {
         advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn, &delta](float r, float rt, Phase phase){
-            draw_fn(r * delta, r * 255.0f, r, rt);
+            draw_fn(r * delta, r * 255.0f, r, rt, phase);
         }, easing_func, easing_type);
     }
 
@@ -456,12 +456,12 @@ public:
     }
 
     template<typename T>
-    static void delta(float t, float fadein_sec, float static_sec, float fadeout_sec, T delta, std::function<void(T, float alpha, float rateEasing, float rateTime)> draw_fn,
+    static void delta(float t, float fadein_sec, float static_sec, float fadeout_sec, T delta, std::function<void(T, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
         ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
         ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
     {
         advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn, &delta](float r, float rt, Phase phase){
-            draw_fn(r * delta, r * 255.0f, r, rt);
+            draw_fn(r * delta, r * 255.0f, r, rt, phase);
         }, easing_func_in, easing_type_in, easing_func_out, easing_type_out);
     }
 

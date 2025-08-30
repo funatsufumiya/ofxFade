@@ -176,11 +176,11 @@ void ofxFadeHelper::alpha(float t, float fadein_sec, float static_sec, float fad
     }, easing_func, easing_type);
 }
 
-void ofxFadeHelper::alpha(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float alpha, float rateEasing, float rateTime)> draw_fn,
+void ofxFadeHelper::alpha(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
     ofxeasing::Function easing_func, ofxeasing::Type easing_type)
 {
     advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn](float r, float rt, Phase phase){
-        draw_fn(r * 255.0f, r, rt);
+        draw_fn(r * 255.0f, r, rt, phase);
     }, easing_func, easing_type);
 }
 
@@ -202,11 +202,11 @@ void ofxFadeHelper::alpha(float t, float fadein_sec, float static_sec, float fad
     }, easing_func_in, easing_type_in, easing_func_out, easing_type_out);
 }
 
-void ofxFadeHelper::alpha(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float alpha, float rateEasing, float rateTime)> draw_fn,
+void ofxFadeHelper::alpha(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
     ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
     ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
 {
     advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn](float r, float rt, Phase phase){
-        draw_fn(r * 255.0f, r, rt);
+        draw_fn(r * 255.0f, r, rt, phase);
     }, easing_func_in, easing_type_in, easing_func_out, easing_type_out);
 }

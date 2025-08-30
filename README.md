@@ -210,9 +210,23 @@ void ofApp::mousePressed(int x, int y, int button){
 
 ## Notes
 
-- `fadeout_sec` can be `-1.0f` (minus value), means no fadeout.
-- You can also get `rateEasing` using `[](float alpha, float rateEasing){}` for `alpha()`, or `[](float delta, float alpha, float rateEasing)` for `delta()`.
-- You can also get `rateTime` using `[](float alpha, float rateEasing, float rateTime){}` for `alpha()`, or `[](float delta, float alpha, float rateEasing, float rateTime)` for `delta()`.
+### No fadeout
+
+`fadeout_sec` can be `-1.0f` (minus value), means no fadeout.
+
+### No fadein
+
+Just set `0` to `fadein_sec`
+
+### How to get rateEasing/rateTime/phase in `alpha()`, `delta()`
+
+- Additional args of function (callback):
+  - To get `rateEasing`, use:
+    - `[](float alpha, float rateEasing){}` for `alpha()`
+    - `[](float delta, float alpha, float rateEasing)` for `delta()`
+  - To get `rateTime, phase`, use:
+    - `[](float alpha, float rateEasing, float rateTime, Phase phase){}` for `alpha()`
+    - `[](float delta, float alpha, float rateEasing, float rateTime, Phase phase)` for `delta()`
 
 ## TODOs
 
