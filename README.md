@@ -12,12 +12,12 @@ This addon basically provides three functions:
 - `ofxFade::delta<T>()`
 - `ofxFade::advanced()`
 
-And two timer classes (which has the same method above in it):
+And two fader (timer) classes, which has the same method above in it:
 
-- `ofxFade::InteractiveFadeTimer`
-- `ofxFade::NonInteractiveFadeTimer`
+- `ofxFade::InteractiveFader`
+- `ofxFade::NonInteractiveFader`
 
-( You can also create new timer classes by extending `ofxFade::FadeTimer` or two above. )
+( You can also create new fader classes by extending `ofxFade::Fader` or two above. )
 
 ## Table of Contents
 
@@ -160,13 +160,13 @@ ofxFade::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFade::Phase phas
 ```cpp
 #include "ofxFade.h"
 
-ofxFade::InteractiveFadeTimer timer;
+ofxFade::InteractiveFader fader;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     // fadein = 1.0, fadeout = 1.0 (sec)
-    timer = ofxFade::InteractiveFadeTimer(1.0f, 1.0f);
-    timer.start();
+    fader = ofxFade::InteractiveFader(1.0f, 1.0f);
+    fader.start();
 }
 
 //--------------------------------------------------------------
@@ -176,7 +176,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    timer.alpha([](float a){
+    fader.alpha([](float a){
         ofSetColor(255, 0, 0, a);
         ofDrawEllipse(100, 100, 100, 100);
     });
@@ -186,10 +186,10 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    if(timer.isStarted() && !timer.isFadeOutStarted()){
-        timer.fadeOut();
-    }else if(timer.isFinished()){
-        timer.start();
+    if(fader.isStarted() && !fader.isFadeOutStarted()){
+        fader.fadeOut();
+    }else if(fader.isFinished()){
+        fader.start();
     }
 }
 ```
@@ -201,13 +201,13 @@ void ofApp::mousePressed(int x, int y, int button){
 ```cpp
 #include "ofxFade.h"
 
-ofxFade::NonInteractiveFadeTimer timer;
+ofxFade::NonInteractiveFader fader;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     // fadein = 1.0, static = 1.0, fadeout = 0.5 (sec)
-    timer = ofxFade::NonInteractiveFadeTimer(1.0f, 1.0f, 0.5f);
-    timer.start();
+    fader = ofxFade::NonInteractiveFader(1.0f, 1.0f, 0.5f);
+    fader.start();
 }
 
 //--------------------------------------------------------------
@@ -217,21 +217,21 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    timer.delta<float>(100, [](float delta, float alpha){
+    fader.delta<float>(100, [](float delta, float alpha){
         ofSetColor(255, 0, 0, alpha);
         ofDrawEllipse(220, 100 + delta, 100, 100);
     }, ofxeasing::Function::Bounce, ofxeasing::Type::Out,
         ofxeasing::Function::Linear, ofxeasing::Type::In);
 
-    // if(timer.isFinished()){
+    // if(fader.isFinished()){
         ofDrawBitmapString("click to restart", 400, 100);
     // }
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    // if(timer.isFinished()){
-        timer.start();
+    // if(fader.isFinished()){
+        fader.start();
     // }
 }
 ```

@@ -2,13 +2,13 @@
 
 #include "ofxFade.h"
 
-ofxFade::NonInteractiveFadeTimer timer;
+ofxFade::NonInteractiveFader fader;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     // fadein = 1.0, static = 1.0, fadeout = 0.5 (sec)
-    timer = ofxFade::NonInteractiveFadeTimer(1.0f, 1.0f, 0.5f);
-    timer.start();
+    fader = ofxFade::NonInteractiveFader(1.0f, 1.0f, 0.5f);
+    fader.start();
 }
 
 //--------------------------------------------------------------
@@ -18,13 +18,13 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    timer.delta<float>(100, [](float delta, float alpha){
+    fader.delta<float>(100, [](float delta, float alpha){
         ofSetColor(255, 0, 0, alpha);
         ofDrawEllipse(220, 100 + delta, 100, 100);
     }, ofxeasing::Function::Bounce, ofxeasing::Type::Out,
         ofxeasing::Function::Linear, ofxeasing::Type::In);
 
-    // if(timer.isFinished()){
+    // if(fader.isFinished()){
         ofDrawBitmapString("click to restart", 400, 100);
     // }
 }
@@ -51,8 +51,8 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    // if(timer.isFinished()){
-        timer.start();
+    // if(fader.isFinished()){
+        fader.start();
     // }
 }
 

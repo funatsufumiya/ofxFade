@@ -2,13 +2,13 @@
 
 #include "ofxFade.h"
 
-ofxFade::InteractiveFadeTimer timer;
+ofxFade::InteractiveFader fader;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     // fadein = 1.0, fadeout = 1.0 (sec)
-    timer = ofxFade::InteractiveFadeTimer(1.0f, 1.0f);
-    timer.start();
+    fader = ofxFade::InteractiveFader(1.0f, 1.0f);
+    fader.start();
 }
 
 //--------------------------------------------------------------
@@ -18,7 +18,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    timer.alpha([](float a){
+    fader.alpha([](float a){
         ofSetColor(255, 0, 0, a);
         ofDrawEllipse(100, 100, 100, 100);
     });
@@ -48,10 +48,10 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-    if(timer.isStarted() && !timer.isFadeOutStarted()){
-        timer.fadeOut();
-    }else if(timer.isFinished()){
-        timer.start();
+    if(fader.isStarted() && !fader.isFadeOutStarted()){
+        fader.fadeOut();
+    }else if(fader.isFinished()){
+        fader.start();
     }
 }
 

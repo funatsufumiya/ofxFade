@@ -12,7 +12,7 @@ public:
     };
 
     /// Timer interface
-    class FadeTimer {
+    class Fader {
     public:
         virtual float getElapsedTime() = 0;
         virtual float getStaticSec() = 0;
@@ -207,10 +207,10 @@ public:
     };
 
     // Timer for non interactive
-    class NonInteractiveFadeTimer : public FadeTimer {
+    class NonInteractiveFader : public Fader {
     public:
-        NonInteractiveFadeTimer() {}
-        NonInteractiveFadeTimer(float fadein_sec, float static_sec, float fadeout_sec) :
+        NonInteractiveFader() {}
+        NonInteractiveFader(float fadein_sec, float static_sec, float fadeout_sec) :
             fadein_sec(fadein_sec), static_sec(static_sec), fadeout_sec(fadeout_sec) {}
 
         float fadein_sec = 0.0f;
@@ -263,10 +263,10 @@ public:
     };
     
     // Timer for interactive fadeout
-    class InteractiveFadeTimer : public FadeTimer {
+    class InteractiveFader : public Fader {
     public: 
-        InteractiveFadeTimer() {}
-        InteractiveFadeTimer(float fadein_sec, float fadeout_sec) :
+        InteractiveFader() {}
+        InteractiveFader(float fadein_sec, float fadeout_sec) :
             fadein_sec(fadein_sec), fadeout_sec(fadeout_sec) {}
 
         float fadein_sec = 0.0f;
