@@ -125,7 +125,7 @@ ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper
 }, ofxeasing::Function::Cubic);
 ```
 
-# [example_interactive](./example_interactive/src/ofApp.cpp)
+## [example_interactive](./example_interactive/src/ofApp.cpp)
 
 ![docs/screenshot_interactive.png](docs/screenshot_interactive.png)
 
