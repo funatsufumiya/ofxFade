@@ -57,7 +57,11 @@ ofxFade::alpha(t, 0.5f, 1.0f, 0.5f, [](float a){
     ofSetColor(255, 0, 0, a);
     ofDrawEllipse(100, 100, 100, 100);
 });
+```
 
+Text and indicators (Advanced usage)
+
+```cpp
 // fadein: 0.5, static: 1.0, fadeout: 0.5
 ofxFade::advanced(t, 0.5f, 1.0f, 0.5f, [](float rateEasing, float rateTime, ofxFade::Phase phase){
     std::string s1 = "rateEasing: " + ofToString(rateEasing, 2);

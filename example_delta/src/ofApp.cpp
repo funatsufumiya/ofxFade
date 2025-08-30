@@ -35,6 +35,10 @@ void ofApp::draw(){
         ofDrawEllipse(340 + delta.x, 100 + delta.y, 100, 100);
     });
 
+    //
+    // Text and indicators (Advanced usage)
+    //
+
     // fadein: 0.5, static: 1.0, fadeout: 0.5
     ofxFade::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFade::Phase phase){
         const float x = 460;
