@@ -221,6 +221,11 @@ public:
             started_timef = ofGetElapsedTimef();
         }
 
+        /// stop means reset
+        void stop(){
+            started_timef = -1.0f;
+        }
+
         bool isStarted(){
             return started_timef > 0.0f;
         }
