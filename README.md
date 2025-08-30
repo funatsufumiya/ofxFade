@@ -1,4 +1,4 @@
-# ofxFadeHelper
+# ofxFade
 
 ![docs/movie.gif](docs/movie.gif)
 
@@ -8,16 +8,16 @@ Fade-in/out helper for openFrameworks
 
 This addon basically provides three functions:
 
-- `ofxFadeHelper::alpha()`
-- `ofxFadeHelper::delta<T>()`
-- `ofxFadeHelper::advanced()`
+- `ofxFade::alpha()`
+- `ofxFade::delta<T>()`
+- `ofxFade::advanced()`
 
 And two timer classes (which has the same method above in it):
 
-- `ofxFadeHelper::InteractiveFadeTimer`
-- `ofxFadeHelper::NonInteractiveFadeTimer`
+- `ofxFade::InteractiveFadeTimer`
+- `ofxFade::NonInteractiveFadeTimer`
 
-( You can also create new timer classes by extending `ofxFadeHelper::FadeTimer` or two above. )
+( You can also create new timer classes by extending `ofxFade::FadeTimer` or two above. )
 
 ## Dependencies
 
@@ -29,26 +29,26 @@ And two timer classes (which has the same method above in it):
 ![docs/screenshot_simple.png](docs/screenshot_simple.png)
 
 ```cpp
-#include "ofxFadeHelper.h"
+#include "ofxFade.h"
 
 // loop time: 2.5 (sec)
 float t = std::fmodf(ofGetElapsedTimef(), 2.5f);
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5
-ofxFadeHelper::alpha(t, 0.5f, 1.0f, 0.5f, [](float a){
+ofxFade::alpha(t, 0.5f, 1.0f, 0.5f, [](float a){
     ofSetColor(255, 0, 0, a);
     ofDrawEllipse(100, 100, 100, 100);
 });
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5
-ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float rateEasing, float rateTime, ofxFadeHelper::Phase phase){
+ofxFade::advanced(t, 0.5f, 1.0f, 0.5f, [](float rateEasing, float rateTime, ofxFade::Phase phase){
     std::string s1 = "rateEasing: " + ofToString(rateEasing, 2);
     ofDrawBitmapString(s1, 200, 50);
 
     std::string s2 = "rateTime: " + ofToString(rateTime, 2);
     ofDrawBitmapString(s2, 200, 100);
 
-    std::string s3 = ofxFadeHelper::phaseToString(phase);
+    std::string s3 = ofxFade::phaseToString(phase);
     ofDrawBitmapStringHighlight(s3, 200, 150);
 });
 ```
@@ -58,25 +58,25 @@ ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float rateEasing, float rateTime
 ![docs/screenshot_delta.png](docs/screenshot_delta.png)
 
 ```cpp
-#include "ofxFadeHelper.h"
+#include "ofxFade.h"
 
 // loop time: 2.5 (sec)
 float t = std::fmodf(ofGetElapsedTimef(), 2.5f);
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100
-ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta){
+ofxFade::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta){
     ofSetColor(255, 0, 0);
     ofDrawEllipse(100, 100 + delta, 100, 100);
 });
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100
-ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta, float alpha){
+ofxFade::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta, float alpha){
     ofSetColor(255, 0, 0, alpha);
     ofDrawEllipse(220, 100 + delta, 100, 100);
 });
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5, delta: (30, 100)
-ofxFadeHelper::delta<ofVec2f>(t, 0.5f, 1.0f, 0.5f, ofVec2f(30, 100), [](ofVec2f delta, float alpha){
+ofxFade::delta<ofVec2f>(t, 0.5f, 1.0f, 0.5f, ofVec2f(30, 100), [](ofVec2f delta, float alpha){
     ofSetColor(255, 0, 0, alpha);
     ofDrawEllipse(340 + delta.x, 100 + delta.y, 100, 100);
 });
@@ -87,32 +87,32 @@ ofxFadeHelper::delta<ofVec2f>(t, 0.5f, 1.0f, 0.5f, ofVec2f(30, 100), [](ofVec2f 
 ![docs/screenshot_easing.png](docs/screenshot_easing.png)
 
 ```cpp
-#include "ofxFadeHelper.h"
+#include "ofxFade.h"
 
 // loop time: 2.5 (sec)
 float t = std::fmodf(ofGetElapsedTimef(), 2.5f);
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100, cubic (out)
-ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta){
+ofxFade::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta){
     ofSetColor(255, 0, 0);
     ofDrawEllipse(100, 100 + delta, 100, 100);
 }, ofxeasing::Function::Cubic);
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100, bounce in, linear out
-ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta, float alpha){
+ofxFade::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta, float alpha){
     ofSetColor(255, 0, 0, alpha);
     ofDrawEllipse(220, 100 + delta, 100, 100);
 }, ofxeasing::Function::Bounce, ofxeasing::Type::Out,
     ofxeasing::Function::Linear, ofxeasing::Type::In);
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5, cubic (in)
-ofxFadeHelper::alpha(t, 0.5f, 1.0f, 0.5f, [](float alpha){
+ofxFade::alpha(t, 0.5f, 1.0f, 0.5f, [](float alpha){
     ofSetColor(255, 0, 0, alpha);
     ofDrawEllipse(340, 100, 100, 100);
 }, ofxeasing::Function::Cubic, ofxeasing::Type::In);
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5, cubic (out)
-ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper::Phase phase){
+ofxFade::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFade::Phase phase){
     const float x = 460;
 
     std::string s1 = "rateEasing: " + ofToString(r, 2);
@@ -121,7 +121,7 @@ ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper
     std::string s2 = "rateTime: " + ofToString(rt, 2);
     ofDrawBitmapString(s2, x, 100);
 
-    std::string s3 = ofxFadeHelper::phaseToString(phase);
+    std::string s3 = ofxFade::phaseToString(phase);
     ofDrawBitmapStringHighlight(s3, x, 150);
 
 }, ofxeasing::Function::Cubic);
@@ -132,13 +132,13 @@ ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper
 ![docs/screenshot_interactive.png](docs/screenshot_interactive.png)
 
 ```cpp
-#include "ofxFadeHelper.h"
+#include "ofxFade.h"
 
-ofxFadeHelper::InteractiveFadeTimer timer;
+ofxFade::InteractiveFadeTimer timer;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    timer = ofxFadeHelper::InteractiveFadeTimer(1.0f, 1.0f);
+    timer = ofxFade::InteractiveFadeTimer(1.0f, 1.0f);
     timer.start();
 }
 
@@ -172,13 +172,13 @@ void ofApp::mousePressed(int x, int y, int button){
 ![docs/screenshot_non_interactive.png](docs/screenshot_non_interactive.png)
 
 ```cpp
-#include "ofxFadeHelper.h"
+#include "ofxFade.h"
 
-ofxFadeHelper::NonInteractiveFadeTimer timer;
+ofxFade::NonInteractiveFadeTimer timer;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    timer = ofxFadeHelper::NonInteractiveFadeTimer(1.0f, 1.0f, 0.5f);
+    timer = ofxFade::NonInteractiveFadeTimer(1.0f, 1.0f, 0.5f);
     timer.start();
 }
 

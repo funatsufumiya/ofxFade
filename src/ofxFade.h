@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxEasing.h"
 
-class ofxFadeHelper {
+class ofxFade {
 public:
     enum class Phase {
         FADEIN,
@@ -26,7 +26,7 @@ public:
         void advanced(std::function<void(float rateEasing, float rateTime, Phase phase)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
-            ofxFadeHelper::advanced(
+            ofxFade::advanced(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), draw_fn,
                 easing_func, easing_type
             );
@@ -34,7 +34,7 @@ public:
         void advanced(std::function<void(float rateEasing, Phase phase)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
-            ofxFadeHelper::advanced(
+            ofxFade::advanced(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), draw_fn,
                 easing_func, easing_type
             );
@@ -44,7 +44,7 @@ public:
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out
         )
         {
-            ofxFadeHelper::advanced(
+            ofxFade::advanced(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), draw_fn,
                 easing_func_in, easing_type_in,
                 easing_func_out, easing_type_out
@@ -55,7 +55,7 @@ public:
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out
         )
         {
-            ofxFadeHelper::advanced(
+            ofxFade::advanced(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), draw_fn,
                 easing_func_in, easing_type_in,
                 easing_func_out, easing_type_out
@@ -65,7 +65,7 @@ public:
         void alpha(std::function<void(float alpha)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
-            ofxFadeHelper::alpha(
+            ofxFade::alpha(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), draw_fn,
                 easing_func, easing_type
             );
@@ -73,7 +73,7 @@ public:
         void alpha(std::function<void(float alpha, float rateEasing)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
-            ofxFadeHelper::alpha(
+            ofxFade::alpha(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), draw_fn,
                 easing_func, easing_type
             );
@@ -81,7 +81,7 @@ public:
         void alpha(std::function<void(float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear,ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
-            ofxFadeHelper::alpha(
+            ofxFade::alpha(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), draw_fn,
                 easing_func, easing_type
             );
@@ -90,7 +90,7 @@ public:
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
-            ofxFadeHelper::alpha(
+            ofxFade::alpha(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), draw_fn,
                 easing_func_in, easing_type_in,
                 easing_func_out, easing_type_out
@@ -100,7 +100,7 @@ public:
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
-            ofxFadeHelper::alpha(
+            ofxFade::alpha(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), draw_fn,
                 easing_func_in, easing_type_in,
                 easing_func_out, easing_type_out
@@ -110,7 +110,7 @@ public:
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
-            ofxFadeHelper::alpha(
+            ofxFade::alpha(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), draw_fn,
                 easing_func_in, easing_type_in,
                 easing_func_out, easing_type_out
@@ -121,7 +121,7 @@ public:
         void delta(T delta, std::function<void(T)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
-            ofxFadeHelper::delta(
+            ofxFade::delta(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), delta, draw_fn,
                 easing_func, easing_type
             );
@@ -131,7 +131,7 @@ public:
         void delta(T delta, std::function<void(T, float alpha)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
-            ofxFadeHelper::delta(
+            ofxFade::delta(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), delta, draw_fn,
                 easing_func, easing_type
             );
@@ -141,7 +141,7 @@ public:
         void delta(T delta,
             std::function<void(T, float alpha, float rateEasing)> draw_fn, ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
-            ofxFadeHelper::delta(
+            ofxFade::delta(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), delta, draw_fn,
                 easing_func, easing_type
             );
@@ -151,7 +151,7 @@ public:
         void delta(T delta, std::function<void(T, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
-            ofxFadeHelper::delta(
+            ofxFade::delta(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), delta, draw_fn,
                 easing_func, easing_type
             );
@@ -162,7 +162,7 @@ public:
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
-            ofxFadeHelper::delta(
+            ofxFade::delta(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), delta, draw_fn,
                 easing_func_in, easing_type_in,
                 easing_func_out, easing_type_out
@@ -174,7 +174,7 @@ public:
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
-            ofxFadeHelper::delta(
+            ofxFade::delta(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), delta, draw_fn,
                 easing_func_in, easing_type_in,
                 easing_func_out, easing_type_out
@@ -186,7 +186,7 @@ public:
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
-            ofxFadeHelper::delta(
+            ofxFade::delta(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), delta, draw_fn,
                 easing_func_in, easing_type_in,
                 easing_func_out, easing_type_out
@@ -198,7 +198,7 @@ public:
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
-            ofxFadeHelper::delta(
+            ofxFade::delta(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), delta, draw_fn,
                 easing_func_in, easing_type_in,
                 easing_func_out, easing_type_out

@@ -1,9 +1,9 @@
 meta:
-	ADDON_NAME = ofxFadeHelper
+	ADDON_NAME = ofxFade
 	ADDON_DESCRIPTION = Fade-in/out helper for openFrameworks
 	ADDON_AUTHOR = Fumiya Funatsu
 	ADDON_TAGS = "utility" "fade" "control"
-	ADDON_URL = http://github.com/funatsufumiya/ofxFadeHelper
+	ADDON_URL = http://github.com/funatsufumiya/ofxFade
 
 common:
 	# dependencies with other addons, a list of them separated by spaces

@@ -1,6 +1,6 @@
 #include "ofApp.h"
 
-#include "ofxFadeHelper.h"
+#include "ofxFade.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -18,25 +18,25 @@ void ofApp::draw(){
     float t = std::fmodf(ofGetElapsedTimef(), 2.5f);
 
     // fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100
-    ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta){
+    ofxFade::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta){
         ofSetColor(255, 0, 0);
         ofDrawEllipse(100, 100 + delta, 100, 100);
     });
 
     // fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100
-    ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta, float alpha){
+    ofxFade::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta, float alpha){
         ofSetColor(255, 0, 0, alpha);
         ofDrawEllipse(220, 100 + delta, 100, 100);
     });
 
     // fadein: 0.5, static: 1.0, fadeout: 0.5, delta: (30, 100)
-    ofxFadeHelper::delta<ofVec2f>(t, 0.5f, 1.0f, 0.5f, ofVec2f(30, 100), [](ofVec2f delta, float alpha){
+    ofxFade::delta<ofVec2f>(t, 0.5f, 1.0f, 0.5f, ofVec2f(30, 100), [](ofVec2f delta, float alpha){
         ofSetColor(255, 0, 0, alpha);
         ofDrawEllipse(340 + delta.x, 100 + delta.y, 100, 100);
     });
 
     // fadein: 0.5, static: 1.0, fadeout: 0.5
-    ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper::Phase phase){
+    ofxFade::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFade::Phase phase){
         const float x = 460;
 
         std::string s1 = "rateEasing: " + ofToString(r, 2);
@@ -45,7 +45,7 @@ void ofApp::draw(){
         std::string s2 = "rateTime: " + ofToString(rt, 2);
         ofDrawBitmapString(s2, x, 100);
 
-        std::string s3 = ofxFadeHelper::phaseToString(phase);
+        std::string s3 = ofxFade::phaseToString(phase);
         ofDrawBitmapStringHighlight(s3, x, 150);
 
         ofSetColor(100);

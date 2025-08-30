@@ -1,12 +1,12 @@
 #include "ofApp.h"
 
-#include "ofxFadeHelper.h"
+#include "ofxFade.h"
 
-ofxFadeHelper::NonInteractiveFadeTimer timer;
+ofxFade::NonInteractiveFadeTimer timer;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    timer = ofxFadeHelper::NonInteractiveFadeTimer(1.0f, 1.0f, 0.5f);
+    timer = ofxFade::NonInteractiveFadeTimer(1.0f, 1.0f, 0.5f);
     timer.start();
 }
 

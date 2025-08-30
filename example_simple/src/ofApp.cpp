@@ -1,6 +1,6 @@
 #include "ofApp.h"
 
-#include "ofxFadeHelper.h"
+#include "ofxFade.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -18,20 +18,20 @@ void ofApp::draw(){
     float t = std::fmodf(ofGetElapsedTimef(), 2.5f);
 
     // fadein: 0.5, static: 1.0, fadeout: 0.5
-    ofxFadeHelper::alpha(t, 0.5f, 1.0f, 0.5f, [](float a){
+    ofxFade::alpha(t, 0.5f, 1.0f, 0.5f, [](float a){
         ofSetColor(255, 0, 0, a);
         ofDrawEllipse(100, 100, 100, 100);
     });
 
     // fadein: 0.5, static: 1.0, fadeout: 0.5
-    ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float rateEasing, float rateTime, ofxFadeHelper::Phase phase){
+    ofxFade::advanced(t, 0.5f, 1.0f, 0.5f, [](float rateEasing, float rateTime, ofxFade::Phase phase){
         std::string s1 = "rateEasing: " + ofToString(rateEasing, 2);
         ofDrawBitmapString(s1, 200, 50);
 
         std::string s2 = "rateTime: " + ofToString(rateTime, 2);
         ofDrawBitmapString(s2, 200, 100);
 
-        std::string s3 = ofxFadeHelper::phaseToString(phase);
+        std::string s3 = ofxFade::phaseToString(phase);
         ofDrawBitmapStringHighlight(s3, 200, 150);
 
         ofSetColor(100);

@@ -1,2 +1,2 @@
 ofxEasing
-ofxFadeHelper
+ofxFade
