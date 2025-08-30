@@ -6,6 +6,12 @@ Fade-in/out helper for openFrameworks
 
 "Bring Your Own Engine/Framework" style. You can create more compilcated engine or framework using this helper.
 
+This addon provides only three functions.
+
+- `ofxFadeHelper::alpha()`
+- `ofxFadeHelper::delta<T>()`
+- `ofxFadeHelper::advanced()`
+
 ## [example_simple](./example_simple/src/ofApp.cpp)
 
 ![docs/screenshot_simple.png](docs/screenshot_simple.png)
