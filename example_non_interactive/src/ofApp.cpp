@@ -6,6 +6,7 @@ ofxFade::NonInteractiveFadeTimer timer;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    // fadein = 1.0, static = 1.0, fadeout = 0.5 (sec)
     timer = ofxFade::NonInteractiveFadeTimer(1.0f, 1.0f, 0.5f);
     timer.start();
 }
