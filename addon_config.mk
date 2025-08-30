@@ -9,8 +9,7 @@ common:
 	# dependencies with other addons, a list of them separated by spaces
 	# or use += in several lines
 	
-	#ADDON_DEPENDENCIES = ofxEasing
-	ADDON_DEPENDENCIES =
+	ADDON_DEPENDENCIES = ofxEasing
 
 	# some addons need resources to be copied to the bin/data folder of the project
 	# specify here any files that need to be copied, you can use wildcards like * and ?
