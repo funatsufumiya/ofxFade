@@ -12,6 +12,11 @@ This addon provides only three functions.
 - `ofxFadeHelper::delta<T>()`
 - `ofxFadeHelper::advanced()`
 
+## Dependencies
+
+- [ofxEasing](https://github.com/funatsufumiya/ofxEasing/)
+
+
 ## [example_simple](./example_simple/src/ofApp.cpp)
 
 ![docs/screenshot_simple.png](docs/screenshot_simple.png)
