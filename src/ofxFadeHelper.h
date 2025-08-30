@@ -225,6 +225,10 @@ public:
             return started_timef > 0.0f;
         }
 
+        bool isFadeOutStarted(){
+            return getElapsedTime() > getFadeInSec() + getStaticSec();
+        }
+
         float getElapsedTime() override {
             if(started_timef > 0.0f){
                 return ofGetElapsedTimef() - started_timef;
