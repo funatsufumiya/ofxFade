@@ -76,11 +76,12 @@ ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta){
     ofDrawEllipse(100, 100 + delta, 100, 100);
 }, ofxeasing::Function::Cubic);
 
-// fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100, bounce (in-out)
+// fadein: 0.5, static: 1.0, fadeout: 0.5, delta: 100, bounce in, linear out
 ofxFadeHelper::delta<float>(t, 0.5f, 1.0f, 0.5f, 100.0f, [](float delta, float alpha){
     ofSetColor(255, 0, 0, alpha);
     ofDrawEllipse(220, 100 + delta, 100, 100);
-}, ofxeasing::Function::Bounce, ofxeasing::Type::InOut);
+}, ofxeasing::Function::Bounce, ofxeasing::Type::Out,
+    ofxeasing::Function::Linear, ofxeasing::Type::In);
 
 // fadein: 0.5, static: 1.0, fadeout: 0.5, cubic (in)
 ofxFadeHelper::alpha(t, 0.5f, 1.0f, 0.5f, [](float alpha){
@@ -113,4 +114,3 @@ ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper
 ## TODOs
 
 - add advanced example
-- separate easing (in/out)
