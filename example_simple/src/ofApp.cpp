@@ -23,7 +23,7 @@ void ofApp::draw(){
     });
 
     // fadein: 0.5, static: 1.0, fadeout: 0.5
-    ofxFadeHelper::simple(t, 0.5f, 1.0f, 0.5f, [](float r, ofxFadeHelper::Phase phase){
+    ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, ofxFadeHelper::Phase phase){
         std::string s1 = "r: " + ofToString(r, 2);
         ofDrawBitmapString(s1, 200, 50);
 
