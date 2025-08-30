@@ -124,3 +124,7 @@ ofxFadeHelper::advanced(t, 0.5f, 1.0f, 0.5f, [](float r, float rt, ofxFadeHelper
 ## TODOs
 
 - add advanced example
+
+## License
+
+Dual licensed under WTFPL and/or 0BSD.
