@@ -165,6 +165,47 @@ void ofApp::mousePressed(int x, int y, int button){
 }
 ```
 
+## [example_non_interactive](./example_non_interactive/src/ofApp.cpp)
+
+![docs/screenshot_non_interactive.png](docs/screenshot_non_interactive.png)
+
+```cpp
+#include "ofxFadeHelper.h"
+
+ofxFadeHelper::NonInteractiveFadeTimer timer;
+
+//--------------------------------------------------------------
+void ofApp::setup(){
+    timer = ofxFadeHelper::NonInteractiveFadeTimer(1.0f, 1.0f, 0.5f);
+    timer.start();
+}
+
+//--------------------------------------------------------------
+void ofApp::update(){
+
+}
+
+//--------------------------------------------------------------
+void ofApp::draw(){
+    timer.delta<float>(100, [](float delta, float alpha){
+        ofSetColor(255, 0, 0, alpha);
+        ofDrawEllipse(220, 100 + delta, 100, 100);
+    }, ofxeasing::Function::Bounce, ofxeasing::Type::Out,
+        ofxeasing::Function::Linear, ofxeasing::Type::In);
+
+    // if(timer.isFinished()){
+        ofDrawBitmapString("click to restart", 400, 100);
+    // }
+}
+
+//--------------------------------------------------------------
+void ofApp::mousePressed(int x, int y, int button){
+    // if(timer.isFinished()){
+        timer.start();
+    // }
+}
+```
+
 ## Notes
 
 - `fadeout_sec` can be `-1.0f` (minus value), means no fadeout.
