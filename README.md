@@ -17,6 +17,8 @@ And two timer classes (which has the same method above in it):
 - `ofxFadeHelper::InteractiveFadeTimer`
 - `ofxFadeHelper::NonInteractiveFadeTimer`
 
+( You can also create new timer classes by extending `ofxFadeHelper::FadeTimer` or two above. )
+
 ## Dependencies
 
 - [ofxEasing](https://github.com/funatsufumiya/ofxEasing/)
