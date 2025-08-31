@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxEasing.h"
 
-namespace fade_opt {
+namespace ofxfade {
     struct nullopt_t {};
     static const nullopt_t nullopt = nullopt_t();
 
@@ -25,7 +25,7 @@ namespace fade_opt {
         T value_;
         bool has_value_;
     };
-} // namespace fade_opt
+} // namespace ofxfade
 
 class ofxFade {
 public:
@@ -283,7 +283,7 @@ public:
         }
 
     protected:
-        fade_opt::optional<float> started_timef = fade_opt::nullopt;
+        ofxfade::optional<float> started_timef = ofxfade::nullopt;
     };
     
     // Timer for interactive fadeout
@@ -392,8 +392,8 @@ public:
         }
 
     protected:
-        fade_opt::optional<float> started_timef = fade_opt::nullopt;
-        fade_opt::optional<float> fadeout_started_timef = fade_opt::nullopt;
+        ofxfade::optional<float> started_timef = ofxfade::nullopt;
+        ofxfade::optional<float> fadeout_started_timef = ofxfade::nullopt;
     };
 
     static void advanced(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float rateEasing, float rateTime, Phase phase)> draw_fn,
