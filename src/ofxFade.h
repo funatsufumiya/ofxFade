@@ -3,6 +3,29 @@
 #include "ofMain.h"
 #include "ofxEasing.h"
 
+namespace fade_opt {
+    struct nullopt_t {};
+    static const nullopt_t nullopt = nullopt_t();
+
+    template<typename T>
+    class optional {
+    public:
+        optional() : has_value_(false) {}
+        optional(const T& value) : value_(value), has_value_(true) {}
+        optional(nullopt_t) : has_value_(false) {}
+
+        void reset() { has_value_ = false; }
+        void set(const T& value) { value_ = value; has_value_ = true; }
+        bool has_value() const { return has_value_; }
+        T& value() { return value_; }
+        const T& value() const { return value_; }
+
+    private:
+        T value_;
+        bool has_value_;
+    };
+} // namespace fade_opt
+
 class ofxFade {
 public:
     enum class Phase {
@@ -223,11 +246,11 @@ public:
 
         /// stop means reset
         void stop(){
-            started_timef = -1.0f;
+            started_timef.reset();
         }
 
         bool isStarted(){
-            return started_timef > 0.0f;
+            return started_timef.has_value();
         }
 
         bool isFadeInEnded(){
@@ -239,8 +262,8 @@ public:
         }
 
         float getElapsedTime() override {
-            if(started_timef > 0.0f){
-                return ofGetElapsedTimef() - started_timef;
+            if(started_timef.has_value()){
+                return ofGetElapsedTimef() - started_timef.value();
             }else{
                 return 0.0f;
             }
@@ -259,7 +282,7 @@ public:
         }
 
     protected:
-        float started_timef = -1.0f;
+        fade_opt::optional<float> started_timef = fade_opt::nullopt;
     };
     
     // Timer for interactive fadeout
@@ -274,34 +297,47 @@ public:
 
         void fadeInStart(){
             started_timef = ofGetElapsedTimef();
-            fadeout_started_timef = -1.0f;
+            fadeout_started_timef.reset();
         }
 
-        void fadeOutStart(){
-            if(started_timef < 0.0f){
+        /// @param immediate execute fade-out soon (keeping fade-in rate). if false, execute fade-out after fade-in.
+        void fadeOutStart(bool immediate = true){
+            if(started_timef.has_value() == false){
                 fadeInStart();
             }
             fadeout_started_timef = ofGetElapsedTimef();
+
+            if(immediate){
+                if(!isFadeInEnded()){
+                    // NOTE: apply incomplete fade_in rate for fade_out
+                    float diff_in = getFadeInSec() - getElapsedTime();
+                    float diff_in_rate = diff_in / getFadeInSec();
+                    float diff_out = diff_in_rate * getFadeOutSec();
+                    started_timef.set(started_timef.value() - (diff_in + diff_out));
+                    fadeout_started_timef.set(fadeout_started_timef.value() -= (diff_in + diff_out));
+                }
+            }
         }
 
-        /// alias of fadeInStart()
+        /// @brief alias of fadeInStart()
         void start(){
             fadeInStart();
         }
 
-        /// alias of fadeOutStart(). If you want stop or reset, please call stop().
-        void fadeOut(){
-            fadeOutStart();
+        /// @brief alias of fadeOutStart().
+        /// @param immediate execute fade-out soon (keeping fade-in rate). if false, execute fade-out after fade-in.
+        void fadeOut(bool immediate = true){
+            fadeOutStart(immediate);
         }
 
         /// stop means reset
         void stop(){
-            started_timef = -1.0f;
-            fadeout_started_timef = -1.0f;
+            started_timef.reset();
+            fadeout_started_timef.reset();
         }
 
         bool isStarted(){
-            return started_timef > 0.0f;
+            return started_timef.has_value();
         }
 
         bool isFadeInEnded(){
@@ -309,28 +345,28 @@ public:
         }
 
         bool isFadeOutStarted(){
-            return fadeout_started_timef > 0.0f;
+            return fadeout_started_timef.has_value();
         }
 
         float getElapsedTime() override {
-            if(started_timef > 0.0f){
-                return ofGetElapsedTimef() - started_timef;
+            if(started_timef.has_value()){
+                return ofGetElapsedTimef() - started_timef.value();
             }else{
                 return 0.0f;
             }
         }
 
         float getStaticSec() override {
-            if(started_timef > 0.0f){
-                if(fadeout_started_timef < 0.0f){
-                    float dt = ofGetElapsedTimef() - started_timef - fadein_sec;
+            if(started_timef.has_value()){
+                if(fadeout_started_timef.has_value() == false){
+                    float dt = ofGetElapsedTimef() - started_timef.value() - fadein_sec;
                     if(dt < 0.0){
                         return 0.0f;
                     }else{
                         return dt;
                     }
                 }else{
-                    float dt = fadeout_started_timef - started_timef - fadein_sec;
+                    float dt = fadeout_started_timef.value() - started_timef.value() - fadein_sec;
                     if(dt < 0.0){
                         return 0.0f;
                     }else{
@@ -347,7 +383,7 @@ public:
         }
 
         float getFadeOutSec() override {
-            if(fadeout_started_timef < 0.0f){
+            if(fadeout_started_timef.has_value() == false){
                 return -1.0f;
             }else{
                 return fadeout_sec;
@@ -355,8 +391,8 @@ public:
         }
 
     protected:
-        float started_timef = -1.0f;
-        float fadeout_started_timef = -1.0f;
+        fade_opt::optional<float> started_timef = fade_opt::nullopt;
+        fade_opt::optional<float> fadeout_started_timef = fade_opt::nullopt;
     };
 
     static void advanced(float t, float fadein_sec, float static_sec, float fadeout_sec, std::function<void(float rateEasing, float rateTime, Phase phase)> draw_fn,

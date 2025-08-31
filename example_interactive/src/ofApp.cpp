@@ -50,6 +50,9 @@ void ofApp::mouseDragged(int x, int y, int button){
 void ofApp::mousePressed(int x, int y, int button){
     if(fader.isStarted() && !fader.isFadeOutStarted()){
         fader.fadeOut();
+
+        // NOTE: fader.fadeOut() normally execute fade-out soon (keeping fade-in rate)
+        //       if immediate = false, execute fade-out after fade-in
     }else if(fader.isFinished()){
         fader.start();
     }
