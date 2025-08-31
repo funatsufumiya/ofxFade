@@ -3,16 +3,18 @@
 #include "ofMain.h"
 #include "ofxEasing.h"
 
-namespace ofxfade {
-
 #if __cplusplus >= 201703L
 #if __has_include(<optional>)
-#define USE_STD_OPTIONAL
+
+#define OFXFADE_USE_STD_OPTIONAL
+#include <optional>
+
 #endif // __has_include(<optional>)
 #endif // __cplusplus >= 201703L
 
-#ifdef USE_STD_OPTIONAL
-    #include <optional>
+namespace ofxfade {
+
+#ifdef OFXFADE_USE_STD_OPTIONAL
     using std::optional;
 
     static const std::nullopt_t nullopt = std::nullopt;
