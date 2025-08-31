@@ -244,8 +244,8 @@ void ofApp::mousePressed(int x, int y, int button){
 
 ### No fadeout
 
-`fadeout_sec` is optional (`ofxfade::optional`.)<br>
-So please set `fadeout_sec` to `ofxfade::nullopt` means no fadeout.
+`fadeout_sec` is optional (`ofxfade::optional` [^1].)<br>
+So please set `fadeout_sec` to `ofxfade::nullopt` [^1] means no fadeout.
 
 ### No fadein
 
@@ -273,3 +273,5 @@ You can pass any custom class `T` for `delta<T>()`, if it can be multiplied (`*`
 ## License
 
 Dual licensed under WTFPL and/or 0BSD.
+
+[^1]: `ofxfade::optional` is the same one of `std::optional` if C++17.

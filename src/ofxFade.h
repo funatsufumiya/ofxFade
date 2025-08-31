@@ -4,6 +4,20 @@
 #include "ofxEasing.h"
 
 namespace ofxfade {
+
+#if __cplusplus >= 201703L
+#if __has_include(<optional>)
+#define USE_STD_OPTIONAL
+#endif // __has_include(<optional>)
+#endif // __cplusplus >= 201703L
+
+#ifdef USE_STD_OPTIONAL
+    #include <optional>
+    using std::optional;
+
+    static const std::nullopt_t nullopt = std::nullopt;
+#else
+
     struct nullopt_t {};
     static const nullopt_t nullopt = nullopt_t();
 
@@ -19,12 +33,17 @@ namespace ofxfade {
         bool has_value() const { return has_value_; }
         T& value() { return value_; }
         const T& value() const { return value_; }
-        // explicit operator bool() const { return has_value_; }
+        explicit operator bool() const { return has_value_; }
+        T& operator*() { return value_; }
+        const T& operator*() const { return value_; }
 
     private:
         T value_;
         bool has_value_;
     };
+
+#endif // USE_STD_OPTIONAL
+
 } // namespace ofxfade
 
 class ofxFade {
@@ -319,8 +338,8 @@ public:
                         float diff_in = getFadeInSec() - getElapsedTime();
                         float diff_in_rate = diff_in / getFadeInSec();
                         float diff_out = diff_in_rate * getFadeOutSec().value();
-                        started_timef.set(started_timef.value() - (diff_in + diff_out));
-                        fadeout_started_timef.set(fadeout_started_timef.value() -= (diff_in + diff_out));
+                        started_timef = started_timef.value() - (diff_in + diff_out);
+                        fadeout_started_timef = fadeout_started_timef.value() - (diff_in + diff_out);
                     }
                 }
             }else{
