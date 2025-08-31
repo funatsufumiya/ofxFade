@@ -274,4 +274,4 @@ You can pass any custom class `T` for `delta<T>()`, if it can be multiplied (`*`
 
 Dual licensed under WTFPL and/or 0BSD.
 
-[^1]: `ofxfade::optional` is the same one of `std::optional` if C++17.
+[^1]: If C++17 or later, `ofxfade::optional` is the same as `std::optional` .
