@@ -4,7 +4,7 @@
 
 Generic fade-in/out helper for openFrameworks
 
-"Bring Your Own Engine/Framework" style. You can create more compilcated engine or framework using this helper.
+This addon is "immediate-mode" style (like ImGui). Draw functions are executed immediately at the place where you wrote.
 
 This addon basically provides three functions:
 
