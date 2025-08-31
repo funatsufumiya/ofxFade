@@ -19,6 +19,7 @@ namespace fade_opt {
         bool has_value() const { return has_value_; }
         T& value() { return value_; }
         const T& value() const { return value_; }
+        explicit operator bool() const { return has_value_; }
 
     private:
         T value_;
