@@ -4,7 +4,7 @@
 
 Generic fade-in/out helper for openFrameworks
 
-This addon is "immediate-mode" style (like ImGui). Draw functions are executed immediately at the place where you wrote.
+This addon is "immediate-mode" style (like [ImGui](https://github.com/ocornut/imgui)). Draw functions are executed immediately at the place where you wrote.
 
 This addon basically provides three functions:
 
