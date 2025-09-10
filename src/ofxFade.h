@@ -167,7 +167,7 @@ public:
         }
 
         template<typename T>
-        void delta(T delta, std::function<void(T)> draw_fn,
+        void delta(T delta, std::function<void(T delta)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
             ofxFade::delta(
@@ -177,7 +177,7 @@ public:
         }
 
         template<typename T>
-        void delta(T delta, std::function<void(T, float alpha)> draw_fn,
+        void delta(T delta, std::function<void(T delta, float alpha)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
             ofxFade::delta(
@@ -188,7 +188,7 @@ public:
 
         template<typename T>
         void delta(T delta,
-            std::function<void(T, float alpha, float rateEasing)> draw_fn, ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
+            std::function<void(T delta, float alpha, float rateEasing)> draw_fn, ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
             ofxFade::delta(
                 getElapsedTime(), getFadeInSec(), getStaticSec(), getFadeOutSec(), delta, draw_fn,
@@ -197,7 +197,7 @@ public:
         }
 
         template<typename T>
-        void delta(T delta, std::function<void(T, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
+        void delta(T delta, std::function<void(T delta, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
             ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
         {
             ofxFade::delta(
@@ -219,7 +219,7 @@ public:
         }
 
         template<typename T>
-        void delta(T delta, std::function<void(T, float alpha)> draw_fn,
+        void delta(T delta, std::function<void(T delta, float alpha)> draw_fn,
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
@@ -231,7 +231,7 @@ public:
         }
 
         template<typename T>
-        void delta(T delta, std::function<void(T, float alpha, float rateEasing)> draw_fn,
+        void delta(T delta, std::function<void(T delta, float alpha, float rateEasing)> draw_fn,
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
@@ -243,7 +243,7 @@ public:
         }
 
         template<typename T>
-        void delta(T delta, std::function<void(T, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
+        void delta(T delta, std::function<void(T delta, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
             ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
             ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
         {
@@ -458,7 +458,7 @@ public:
         ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out);
 
     template<typename T>
-    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T)> draw_fn,
+    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T delta)> draw_fn,
         ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
     {
         advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn, &delta](float r, Phase phase){
@@ -467,7 +467,7 @@ public:
     }
 
     template<typename T>
-    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T, float alpha)> draw_fn,
+    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T delta, float alpha)> draw_fn,
         ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
     {
         advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn, &delta](float r, Phase phase){
@@ -478,7 +478,7 @@ public:
 
     template<typename T>
     static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta,
-        std::function<void(T, float alpha, float rateEasing)> draw_fn, ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
+        std::function<void(T delta, float alpha, float rateEasing)> draw_fn, ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
     {
         advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn, &delta](float r, Phase phase){
             draw_fn(r * delta, r * 255.0f, r);
@@ -486,7 +486,7 @@ public:
     }
 
     template<typename T>
-    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
+    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T delta, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
         ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out)
     {
         advanced(t, fadein_sec, static_sec, fadeout_sec, [&draw_fn, &delta](float r, float rt, Phase phase){
@@ -495,7 +495,7 @@ public:
     }
 
     template<typename T>
-    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T)> draw_fn,
+    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T delta)> draw_fn,
         ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
         ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
     {
@@ -505,7 +505,7 @@ public:
     }
 
     template<typename T>
-    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T, float alpha)> draw_fn,
+    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T delta, float alpha)> draw_fn,
         ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
         ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
     {
@@ -515,7 +515,7 @@ public:
     }
 
     template<typename T>
-    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T, float alpha, float rateEasing)> draw_fn,
+    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T delta, float alpha, float rateEasing)> draw_fn,
         ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
         ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
     {
@@ -525,7 +525,7 @@ public:
     }
 
     template<typename T>
-    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
+    static void delta(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, T delta, std::function<void(T delta, float alpha, float rateEasing, float rateTime, Phase phase)> draw_fn,
         ofxeasing::Function easing_func_in, ofxeasing::Type easing_type_in,
         ofxeasing::Function easing_func_out, ofxeasing::Type easing_type_out)
     {
