@@ -266,6 +266,12 @@ public:
         float static_sec = 0.0f;
         ofxfade::optional<float> fadeout_sec = 0.0f;
 
+        void setup(float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec){
+            this->fadein_sec = fadein_sec;
+            this->static_sec = static_sec;
+            this->fadeout_sec = fadeout_sec;
+        }
+
         void start(){
             started_timef = ofGetElapsedTimef();
         }
@@ -320,6 +326,11 @@ public:
 
         float fadein_sec = 0.0f;
         ofxfade::optional<float> fadeout_sec = 0.0f;
+
+        void setup(float fadein_sec, ofxfade::optional<float> fadeout_sec){
+            this->fadein_sec = fadein_sec;
+            this->fadeout_sec = fadeout_sec;
+        }
 
         void fadeInStart(){
             started_timef = ofGetElapsedTimef();
