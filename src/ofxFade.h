@@ -50,6 +50,12 @@ namespace ofxfade {
 
 class ofxFade {
 public:
+    enum Flag {
+        OFXFADE_NO_PUSH_POP = 1 << 0
+        // OFXFADE_ANOTHER_FLAG = 1 << 1, // 2
+        // OFXFADE_THIRD_FLAG   = 1 << 2  // 4
+    };
+
     enum class Phase {
         FADEIN,
         STATIC,
@@ -438,6 +444,47 @@ public:
         ofxfade::optional<float> started_timef = ofxfade::nullopt;
         ofxfade::optional<float> fadeout_started_timef = ofxfade::nullopt;
     };
+
+    // ------------
+
+protected:
+    static int global_flags;
+
+public:
+
+    static void setFlag(Flag flag, bool status = true){
+        if(status){
+            global_flags = global_flags | static_cast<int>(flag);
+        }else{
+            global_flags = global_flags & ~static_cast<int>(flag);
+        }
+    }
+    
+    static void setFlags(int flag, bool status = true){
+        if(status){
+            global_flags = global_flags | flag;
+        }else{
+            global_flags = global_flags & ~flag;
+        }
+    }
+
+    static void withFlag(Flag flag, std::function<void()> fn, bool status = true) {
+        int prev_flag = global_flags;
+        setFlag(flag, status);
+        fn();
+        global_flags = prev_flag;
+    }
+    
+    static void withFlags(int flag, std::function<void()> fn, bool status = true) {
+        int prev_flag = global_flags;
+        setFlags(flag, status);
+        fn();
+        global_flags = prev_flag;
+    }
+
+    static bool getFlag(Flag flag) {
+        return (global_flags & flag) == flag;
+    }
 
     static void advanced(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, std::function<void(float rateEasing, float rateTime, Phase phase)> draw_fn,
         ofxeasing::Function easing_func = ofxeasing::Function::Linear, ofxeasing::Type easing_type = ofxeasing::Type::Out);
