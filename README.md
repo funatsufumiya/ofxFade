@@ -270,6 +270,12 @@ You can pass any custom class `T` for `delta<T>()`, if it can be multiplied (`*`
 - You can `ofxFade::setFlag(ofxFade::OFXFADE_NO_PUSH_POP);` to disable every push/pop before (and after) `delta`/`alpha`/`advanced` functions. (check [#3](https://github.com/funatsufumiya/ofxFade/issues/3) and [#4](https://github.com/funatsufumiya/ofxFade/issues/4) for detail.)
   - for temporal on/off (for specific scope), please use `ofxFade::withFlag()` function.
 
+```cpp
+ofxFade::withFlag(ofxFade::OFXFADE_NO_PUSH_POP, [&](){
+    // something you want...
+});
+```
+
 ## TODOs
 
 - Add advanced example
