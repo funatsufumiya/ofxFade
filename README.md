@@ -265,6 +265,10 @@ Just set `0` to `fadein_sec`
 
 You can pass any custom class `T` for `delta<T>()`, if it can be multiplied (`*`) by `rate` (please implement `operator *(float)`.)
 
+### Other options
+
+- you can `#define OFXFADE_NO_PUSH_POP` to disable every push/pop before (and after) `delta`/`alpha` functions.
+
 ## TODOs
 
 - Add advanced example
