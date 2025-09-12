@@ -267,9 +267,9 @@ You can pass any custom class `T` for `delta<T>()`, if it can be multiplied (`*`
 
 ### Other options
 
-- You can `#define OFXFADE_NO_PUSH_POP` to disable every push/pop before (and after) `delta`/`alpha` functions.
+- You can `#define OFXFADE_NO_PUSH_POP` to disable every push/pop before (and after) `delta`/`alpha`/`advanced` functions.
   - for global, define the macro before `#include "ofxFade"`
-  - for temporal, define the macro before call `delta`/`alpha` and undef it after.
+  - for temporal, define the macro before call `delta`/`alpha`/`advanced` and undef it after.
 
 ## TODOs
 
