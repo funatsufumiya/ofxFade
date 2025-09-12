@@ -49,11 +49,9 @@ std::string ofxFade::phaseToString(Phase phase){
 }
 
 void ofxFade::advanced(float t, float fadein_sec, float static_sec, ofxfade::optional<float> fadeout_sec, std::function<void(float rateEasing, float rateTime, Phase phase)> draw_fn, ofxeasing::Function easing_func, ofxeasing::Type easing_type){
-    #if !defined(OFXFADE_NO_PUSH_POP)
     if(!ofxFade::getFlag(ofxFade::OFXFADE_NO_PUSH_POP)){
         utils::pushAll();
     }
-    #endif // OFXFADE_NO_PUSH_POP
 
     if(fadeout_sec.has_value()){
         // fadein
