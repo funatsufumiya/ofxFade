@@ -267,7 +267,7 @@ You can pass any custom class `T` for `delta<T>()`, if it can be multiplied (`*`
 
 ### Other options
 
-- You can `ofxFade::setFlag(ofxFade::OFXFADE_NO_PUSH_POP);` to disable every push/pop before (and after) `delta`/`alpha`/`advanced` functions. (check [#3](https://github.com/funatsufumiya/ofxFade/issues/3) and [#4](https://github.com/funatsufumiya/ofxFade/issues/4) for detail.)
+- You can set `ofxFade::setFlag(ofxFade::OFXFADE_NO_PUSH_POP);` to disable every push/pop before (and after) `delta`/`alpha`/`advanced` functions. (check [#3](https://github.com/funatsufumiya/ofxFade/issues/3) and [#4](https://github.com/funatsufumiya/ofxFade/issues/4) for detail.)
   - for global, set it on `setup()` or somewhere you init.
   - for temporal on/off (for specific scope), please use `ofxFade::withFlag()` function.
 
